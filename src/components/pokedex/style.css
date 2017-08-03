@@ -1,0 +1,43 @@
+:root {
+  --mobile: 600px;
+  --tablet: 1024px;
+  --desktop: 1280px;
+  --color-main: red;
+  --nb-rows: 7;
+}
+
+
+@media screen and (min-width: 1280px) {
+  :root {
+    --nb-rows: 7;
+    --color-main: blue;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  :root {
+    --nb-rows: 3;
+    --color-main: purple;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  ol {
+    color: black;
+  }
+  :root {
+    --nb-rows: 2;
+    --color-main: green;
+  }
+}
+
+ol {
+  display: grid; 
+  max-width: 1200px; 
+  grid-template-columns: repeat(var(--nb-rows), 1fr); 
+  grid-gap: 40px 10px; 
+  grid-auto-rows: minmax(100px, auto); 
+  list-style-type: none;
+  margin: 30px auto 0;
+  color: var(--color-main);
+}

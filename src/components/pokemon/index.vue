@@ -1,10 +1,11 @@
 <template>
   <li class="pkmn">
-    <a href="">
+    <router-link :to="{ path: 'pokemon', query: { userId: 123 } }">
       <img v-bind:src="pkmn.sprites.front_default">
       <p>{{ pkmn.name }}</p>
-    </a>
+    </router-link>
   </li>
+
 </template>
 
 <script src="./script.js"></script>

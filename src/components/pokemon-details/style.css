@@ -1,14 +1,23 @@
 .pkmn-details {
   flex: 1;
+  padding: 0 15px;
 }
 
 header {
   min-height: 150px;
+  margin-bottom: 15px;
 }
 
 h1 {
-  text-align: center;
+  text-align: left;
+  font-size: 50px;
+  position: relative;
 }
+
+h1:after {
+  content: '';
+}
+
 
 .covers {
   display: grid;

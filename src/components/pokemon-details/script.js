@@ -31,6 +31,17 @@ const myComponent = {
       });
     },
   },
+  computed: {
+    allCovers: function () {
+      const missingCovers = [
+        {version: { name: 'moon' }},
+        {version: { name: 'sun' }},
+        {version: { name: 'omega-ruby' }},
+        {version: { name: 'alpha-sapphire' }}
+      ]
+      return [...missingCovers, ...this.data.game_indices]
+    }
+  },
   filters: {
     capitalize: (value) => {
       if (!value) return '';

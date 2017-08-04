@@ -14,9 +14,9 @@
       </ul>
     </header>
     <section>
-      <img src="../../assets/loader.gif" alt="" />
+      <h2>Appears in : </h2>
       <ul class="covers">
-        <li v-for="cover in data.game_indices">
+        <li v-for="cover in allCovers">
           <img
             v-bind:src="cover.version.name | getPath"
             height="90" />

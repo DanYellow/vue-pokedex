@@ -45,7 +45,7 @@ module.exports = {
         options: {
           // ...
           postcss: [
-            require('postcss-cssnext')()
+            require('postcss-cssnext')(),
           ]
         }
       }

@@ -1,4 +1,4 @@
-const myComponent = {
+const SearchBox = {
   props: ['pokedex'],
   data: function () {
     return {
@@ -18,4 +18,4 @@ const myComponent = {
   },
 };
 
-export default myComponent;
+export default SearchBox;

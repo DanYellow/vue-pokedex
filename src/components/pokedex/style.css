@@ -31,13 +31,19 @@
   }
 }
 
+.pokedex {
+  display: flex;
+
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 ol {
-  display: grid; 
-  max-width: 1200px; 
-  grid-template-columns: repeat(var(--nb-rows), 1fr); 
-  grid-gap: 40px 10px; 
-  grid-auto-rows: minmax(100px, auto); 
+  display: grid;
+  flex: 2;
+  grid-template-columns: repeat(var(--nb-rows), 1fr);
+  grid-gap: 40px 10px;
+  grid-auto-rows: minmax(100px, auto);
   list-style-type: none;
-  margin: 30px auto 0;
   color: var(--color-main);
 }

@@ -44,7 +44,9 @@ module.exports = {
         // vue-loader options goes here
         options: {
           // ...
-          postcss: [require('postcss-cssnext')()]
+          postcss: [
+            require('postcss-cssnext')()
+          ]
         }
       }
     ]

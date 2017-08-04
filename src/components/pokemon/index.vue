@@ -1,8 +1,8 @@
 <template>
   <li class="pkmn">
-    <router-link :to="{ path: 'pokemon', query: { userId: 123 } }">
-      <img v-bind:src="pkmn.sprites.front_default">
-      <p>{{ pkmn.name }}</p>
+    <router-link :to="{ path: 'pokemon', query: { id: pkmn.id } }">
+      <img v-bind:src="pkmn.sprites.front_default" width="100">
+      <p>{{ pkmn.name | capitalize }}</p>
     </router-link>
   </li>
 

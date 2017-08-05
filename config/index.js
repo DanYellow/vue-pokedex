@@ -47,7 +47,12 @@ module.exports = {
           postcss: [
             require('postcss-cssnext')(),
           ]
-        }
+        },
+        use: [
+          { loader: 'vue-style-loader' },
+          { loader: 'css-loader' },
+          { loader: 'sass-loader' }
+        ]
       }
     ]
   }

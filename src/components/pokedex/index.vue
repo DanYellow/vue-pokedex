@@ -1,5 +1,4 @@
 <template>
-
   <div class="pokedex-wrapper">
     <searchbox v-bind:pokedex="pokedex"></searchbox>
     <div class="pokedex">
@@ -13,7 +12,6 @@
       <router-view></router-view>
     </div>
   </div>
-
 </template>
 
 <script src="./script.js"></script>

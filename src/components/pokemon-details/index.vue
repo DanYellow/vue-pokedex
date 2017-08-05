@@ -14,9 +14,9 @@
       </ul>
     </header>
     <section>
-      <h2>Appears in : </h2>
-      <ul class="covers">
-        <li v-for="cover in allCovers">
+      <button class="btn--reset" type="button" @click="showGamesCover = !showGamesCover">Appears in : </button>
+      <ul class="covers" v-if="showGamesCover">
+        <li v-for="cover in allCovers" v-bind:key="cover.version.name">
           <img
             v-bind:src="cover.version.name | getPath"
             height="90" />

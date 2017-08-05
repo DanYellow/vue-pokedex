@@ -16,6 +16,7 @@ const myComponent = {
     return {
       data: {},
       isLoading: false,
+      showGamesCover: false,
     };
   },
   methods: {

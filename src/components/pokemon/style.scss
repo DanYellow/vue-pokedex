@@ -1,11 +1,20 @@
 li {
   text-align: center;
+
+  &.selected {
+    cursor: not-allowed;
+    opacity: .3;
+  }
 }
 
-li a {
+a {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .selected & {
+    pointer-events: none;
+  }
 }
 
 li a p {

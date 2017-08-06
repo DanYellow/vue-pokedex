@@ -1,5 +1,5 @@
 <template>
-  <li class="pkmn">
+  <li class="pkmn" :class="{ selected: isSelected }">
     <router-link :to="{ path: 'pokemon', query: { id: pkmn.id } }">
       <img v-bind:src="pkmn.sprites.front_default" width="100">
       <p>{{ pkmn.name | capitalize }}</p>
@@ -9,4 +9,4 @@
 </template>
 
 <script src="./script.js"></script>
-<style src="./style.css" scoped lang="postcss"></style>
+<style src="./style.scss" scoped lang="scss"></style>

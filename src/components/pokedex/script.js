@@ -12,7 +12,7 @@ const myComponent = {
   },
   data() {
     return {
-      pokedex: store.state,
+      state: store.state,
     };
   },
 };

@@ -17,12 +17,18 @@ ol {
 @media screen and (max-width: 600px) {
   ol {
     grid-template-columns: repeat(3, 1fr);
-      grid-auto-rows: minmax(auto, auto);
-
+    grid-auto-rows: minmax(auto, auto);
   }
 
   .pokedex {
     flex-direction: column;
+  }
+}
 
+.pokedex-wrapper__no-results {
+  padding: 10px;
+  text-align: center;
+  p {
+    font-size: 1.5rem;
   }
 }

@@ -4,22 +4,26 @@ import store from '../../store';
 
 const myComponent = {
   props: ['pkmn'],
-  data: function () {
+  data() {
     return {
       data: store.state,
     };
   },
   computed: {
-    isSelected: function () {
-      // console.log('f', );
-      // this.$set(this.$root.$data, 'b', 2)
+    isSelected() {
       return (this.$route.query.id === this.pkmn.id);
-    }
+    },
   },
   filters: {
     capitalize: (value) => {
       if (!value) return '';
       return v.capitalize(value);
+    },
+  },
+  methods: {
+    imageReady() {
+      this.$el.classList.add('ready');
+      // console.log('gregerge', );
     },
   },
 };

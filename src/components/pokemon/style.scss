@@ -1,9 +1,21 @@
+@keyframes display-details {
+    from {
+      opacity: 0;
+    } to {
+      opacity: 1;
+    }
+}
+
 li {
   text-align: center;
+  opacity: 0;
 
   &.selected {
     cursor: not-allowed;
     opacity: .3;
+  }
+  &.ready {
+    animation: display-details .6s forwards;
   }
 }
 
@@ -41,5 +53,5 @@ li a p:after {
     transform-origin: center right;
     background-color: red;
     transition-duration: .15s;
-    z-index: -1;  
+    z-index: -1;
 }

@@ -10,7 +10,6 @@
       <span>{{ data.message }}</span>
     </router-link>
   </li>
-
 </template>
 
 <script src="./script.js"></script>

@@ -22,9 +22,20 @@
     }
 }
 
+.pkmn-popup {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 0, 0, .5);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 .pkmn-details {
-  flex: 1;
-  padding: 0 15px;
+  background-color: whitesmoke;
+  padding: 15px;
+  max-width: 500px;
+  margin: 30px auto;
+  border-radius: 3px;
 
   &--show {
     animation: display-details 1s;
@@ -34,6 +45,7 @@
 header {
   min-height: 150px;
   margin-bottom: 15px;
+  text-align: center;
 }
 
 .pkmn-details__sprite {
@@ -51,6 +63,8 @@ figure {
     text-align: left;
     font-size: 50px;
     bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
 
     &:after {
       content: '';
@@ -70,12 +84,10 @@ figure {
 
 .pkmn-details__covers {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-gap: 10px 10px;
   grid-auto-rows: minmax(50px, auto);
-}
-
-.characteristics {
+  text-align: center;
 }
 
 .characteristics li {

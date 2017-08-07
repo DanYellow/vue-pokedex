@@ -2,7 +2,7 @@
   <div class="pokedex-wrapper">
     <searchbox></searchbox>
     <div class="pokedex">
-      <div>
+      <div style="flex: 2;">
         <ol>
           <pokemon
             v-for="pkmn in pokedex.filtered"

@@ -1,5 +1,5 @@
 const BASE_URL = 'http://pokeapi.co/api/v2';
-const MAX_ID = 15;
+const MAX_ID = 50;
 
 const store = {
   state: {
@@ -10,7 +10,6 @@ const store = {
     this.state.pokedex.push(pkmn);
   },
   setPokedex(filteredPokedex) {
-    // this.state.pokedex = filteredPokedex;
     this.state.filtered = filteredPokedex;
   },
 };

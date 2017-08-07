@@ -1,13 +1,12 @@
 .pokedex {
   display: flex;
 
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
 ol {
   display: grid;
-  flex: 2;
   grid-template-columns: repeat(5, 1fr);
   grid-gap: 10px;
   grid-auto-rows: minmax(50px, auto);

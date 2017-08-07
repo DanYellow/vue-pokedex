@@ -1,20 +1,23 @@
+import store from '@/store';
+
 const SearchBox = {
-  props: ['pokedex'],
-  data: function () {
+  data() {
     return {
       query: '',
+      pokedex: store.state,
     };
   },
-  created: function () {
-    console.log('f', this.pokedex);
-  },
   computed: {
-    searchResult: function () {
-      return this.pokedex.filter(pkmn => {
+    searchResult() {
+      const filteredPokemon = this.pokedex.pokedex.filter((pkmn) => {
         const pkmnName = pkmn.name;
         return pkmnName.includes(this.query);
-      })
-    }
+      });
+
+      store.setPokedex(filteredPokemon);
+
+      return filteredPokemon;
+    },
   },
 };
 

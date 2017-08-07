@@ -3,7 +3,7 @@
     <input
       placeholder="Pokemon's name" type="search"
       v-model="query" />
-    {{ searchResult.length }}
+    <p>{{ searchResult.length }} result(s)</p>
   </form>
 </template>
 

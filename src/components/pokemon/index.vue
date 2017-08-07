@@ -3,6 +3,7 @@
     <router-link :to="{ path: 'pokemon', query: { id: pkmn.id } }">
       <img v-bind:src="pkmn.sprites.front_default" width="100">
       <p>{{ pkmn.name | capitalize }}</p>
+      <span>{{ data.message }}</span>
     </router-link>
   </li>
 

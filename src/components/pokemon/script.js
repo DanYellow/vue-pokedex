@@ -1,13 +1,19 @@
 import v from 'voca';
 
+import store from '../../store';
+
 const myComponent = {
   props: ['pkmn'],
-  created: function () {
-    console.log(this.$route.query.id, this.pkmn);
+  data: function () {
+    return {
+      data: store.state,
+    };
   },
   computed: {
     isSelected: function () {
-      return (this.$route.query.id === this.pkmn.id)
+      // console.log('f', );
+      // this.$set(this.$root.$data, 'b', 2)
+      return (this.$route.query.id === this.pkmn.id);
     }
   },
   filters: {

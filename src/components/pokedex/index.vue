@@ -1,16 +1,15 @@
 <template>
   <div class="pokedex-wrapper">
-    <searchbox v-bind:pokedex="pokedex"></searchbox>
+    <searchbox></searchbox>
     <div class="pokedex">
       <div>
         <ol>
           <pokemon
-            v-for="pkmn in pokedex"
+            v-for="pkmn in pokedex.filtered"
             v-bind:pkmn="pkmn"
             v-bind:key="pkmn.id"></pokemon>
         </ol>
       </div>
-
       <router-view></router-view>
     </div>
   </div>

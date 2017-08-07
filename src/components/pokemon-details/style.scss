@@ -18,7 +18,7 @@
     from {
       filter: drop-shadow(0px 0px 0px #000);
     } to {
-      filter: drop-shadow(10px -2px 2px #000);
+      filter: drop-shadow(10px -1px 2px #000);
     }
 }
 
@@ -39,12 +39,13 @@ header {
 .pkmn-details__sprite {
   img {
     animation: sprite-shadow .3s forwards;
+    animation-delay: .5s;
   }
 }
 
 figure {
   position: relative;
-  
+
   figcaption {
     position: absolute;
     text-align: left;
@@ -62,7 +63,7 @@ figure {
       transform-origin: center left;
       background-color: red;
       transition-duration: .15s;
-      z-index: -1;  
+      z-index: -1;
     }
   }
 }

@@ -1,5 +1,8 @@
 import v from 'voca';
 
+import store from '@/store';
+
+
 const BASE_URL = 'http://pokeapi.co/api/v2';
 
 const myComponent = {
@@ -16,7 +19,7 @@ const myComponent = {
     return {
       data: {},
       isLoading: false,
-      showGamesCover: false,
+      showGamesCover: false
     };
   },
   methods: {
@@ -33,15 +36,16 @@ const myComponent = {
     },
   },
   computed: {
-    allCovers: function () {
+    allCovers() {
       const missingCovers = [
-        {version: { name: 'moon' }},
-        {version: { name: 'sun' }},
-        {version: { name: 'omega-ruby' }},
-        {version: { name: 'alpha-sapphire' }}
-      ]
-      return [...missingCovers, ...this.data.game_indices]
-    }
+        { version: { name: 'moon' }},
+        { version: { name: 'sun' }},
+        { version: { name: 'omega-ruby' }},
+        { version: { name: 'alpha-sapphire' }}
+      ];
+
+      return [...missingCovers, ...this.data.game_indices];
+    },
   },
   filters: {
     capitalize: (value) => {
@@ -51,7 +55,7 @@ const myComponent = {
     getPath: (value) => {
       if (!value) return '';
       return require(`../../assets/games_cover/${value}.png`);
-    }
+    },
   },
 };
 

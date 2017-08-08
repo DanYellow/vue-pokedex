@@ -1,25 +1,30 @@
 @keyframes display-details {
-    from {
-      opacity: 0;
-    } to {
-      opacity: 1;
-    }
+  from {
+    opacity: 0;
+  } to {
+    opacity: 1;
+  }
 }
 
 @keyframes border-pkmnname {
-    from {
-      transform: scaleX(0);
-    } to {
-      transform: scaleX(1);
-    }
+  from {
+    transform: scaleX(0);
+  } to {
+    transform: scaleX(1);
+  }
 }
 
 @keyframes sprite-shadow {
-    from {
-      filter: drop-shadow(0px 0px 0px #000);
-    } to {
-      filter: drop-shadow(10px -1px 2px #000);
-    }
+  from {
+    filter: drop-shadow(0px 0px 0px #000);
+  } to {
+    filter: drop-shadow(10px -1px 2px #000);
+  }
+}
+
+.link--btn {
+  border-color: black;
+  color: black;
 }
 
 .pkmn-popup {
@@ -37,8 +42,22 @@
   margin: 30px auto;
   border-radius: 3px;
 
+  @media screen and (max-width: 768px) {
+    margin: 30px 50px;
+  }
+
   &--show {
     animation: display-details 1s;
+  }
+
+  &__types {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    li {
+      padding: 5px;
+      color: whitesmoke;
+    }
   }
 }
 
@@ -57,6 +76,7 @@ header {
 
 figure {
   position: relative;
+  margin-bottom: 3px;
 
   figcaption {
     position: absolute;

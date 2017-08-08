@@ -5,3 +5,16 @@
         background: none;
     }
 }
+
+a {
+  &.link--btn {
+    padding: 10px;
+    text-decoration: none;
+    display: block;
+    border-width: 1px;
+    border-style: solid;
+    &:hover {
+      background-color: rgba(0, 0, 0, .3);
+    }
+  }
+}

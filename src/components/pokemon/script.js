@@ -23,7 +23,6 @@ const myComponent = {
   methods: {
     imageReady() {
       this.$el.classList.add('ready');
-      // console.log('gregerge', );
     },
   },
 };

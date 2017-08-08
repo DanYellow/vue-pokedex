@@ -2,7 +2,7 @@
   <div class="pkmn-popup">
     <article class="pkmn-details pkmn-details--show" v-if="!isLoading">
       <header>
-        <a href="#/">Close</a>
+        <a href="#/" class="link--btn">Close</a>
         <figure class="pkmn-details__sprite">
           <img
             v-bind:title="data.name + ' image'"
@@ -11,8 +11,16 @@
           <figcaption>{{ data.name | capitalize }}</figcaption>
         </figure>
         <ul class="characteristics">
-          <li> Weight : {{ data.weight }} </li>
-          <li> Height : {{ data.height }} </li>
+          <li> Weight : {{ convertUnit(data.weight, 'weight') }} lbs.</li>
+          <li> Height : {{ convertUnit(data.height, 'height') }} ft. </li>
+        </ul>
+        <ul class="pkmn-details__types">
+          <li
+            v-for="type in data.types"
+            :class="type.type.name"
+            :style="{ 'background-color': getTypeColor(type.type.name) }" >
+            {{ type.type.name }}
+          </li>
         </ul>
       </header>
       <section>

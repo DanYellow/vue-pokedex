@@ -1,21 +1,21 @@
 import v from 'voca';
 
 import store from '@/store';
-
+import Utils from '@/utils';
 
 const BASE_URL = 'http://pokeapi.co/api/v2';
 
 const myComponent = {
   props: ['pkmn-details'],
-  created: function () {
+  created() {
     this.fetchPkmn(this.$route.query.id);
   },
   watch: {
-    '$route.query.id': function (id) {
+    '$route.query.id': (id) => {
       this.fetchPkmn(id);
     },
   },
-  data: function () {
+  data() {
     return {
       data: {},
       isLoading: false,
@@ -27,8 +27,8 @@ const myComponent = {
     fetchPkmn(id) {
       if (this.isLoading || !id) return;
 
-      if((id - 1) <= this.store.pokedex.length) {
-        this.data = this.store.pokedex[id-1];
+      if ((id - 1) <= this.store.pokedex.length) {
+        this.data = this.store.pokedex[id - 1];
         return;
       }
       // @TODO use vuex to take datas from pokedex instead of make useless api call
@@ -40,14 +40,19 @@ const myComponent = {
         this.data = pkmn;
       });
     },
+    getTypeColor: (type) => {
+      if (!type) return '';
+      return Utils.typeColor(type);
+    },
+    convertUnit: (unit, type) => Utils.unitConvertion(unit, type),
   },
   computed: {
     allCovers() {
       const missingCovers = [
-        { version: { name: 'moon' }},
-        { version: { name: 'sun' }},
-        { version: { name: 'omega-ruby' }},
-        { version: { name: 'alpha-sapphire' }}
+        { version: { name: 'moon' } },
+        { version: { name: 'sun' } },
+        { version: { name: 'omega-ruby' } },
+        { version: { name: 'alpha-sapphire' } },
       ];
 
       return [...missingCovers, ...this.data.game_indices];

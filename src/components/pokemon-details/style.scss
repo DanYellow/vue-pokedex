@@ -27,6 +27,14 @@
   color: black;
 }
 
+.btn--toggle-covers {
+  font-size: 1.25rem;
+  align-items: center;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
 .pkmn-popup {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -111,6 +119,7 @@ figure {
   grid-gap: 10px 10px;
   grid-auto-rows: minmax(50px, auto);
   text-align: center;
+  margin-top: 7px;
 
   @media screen and (max-width: 768px) {
     grid-template-columns: repeat(3, 1fr);

@@ -23,3 +23,4 @@ export default {
 </style>
 
 <style src='./base.scss'  lang="scss"></style>
+<style src='./icons.scss'  lang="scss"></style>

@@ -29,14 +29,18 @@
             {{ evolution }}
           </li>
         </ul>
-        <button class="btn--reset" type="button" @click="showGamesCover = !showGamesCover">Appears in : </button>
-        <ul class="pkmn-details__covers" v-if="showGamesCover">
+        <button class="btn--reset btn--toggle-covers" type="button" @click="showGamesCover = !showGamesCover">
+          Appears in :
+          <span
+            v-bind:class="{ 'icon-chevron-down': !showGamesCover, 'icon-chevron-up': showGamesCover }"></span>
+        </button>
+        <ul class="pkmn-details__covers" v-show="showGamesCover">
           <li v-for="cover in allCovers" v-bind:key="cover.version.name">
             <img
               v-bind:src="cover.version.name | getPath"
               v-bind:alt="'pokemon ' + cover.version.name"
               v-bind:title="'pokemon ' + cover.version.name"
-              height="90" />
+              width="90" />
           </li>
         </ul>
       </section>

@@ -39,35 +39,6 @@ const myComponent = {
           this.data.evolutions = [];
         });
       }
-
-      fetch(`${BASE_URL}/evolution-chain/${id}/`).then(result => (
-        result.json()
-      )).then((evolutions) => {
-        const computedEvolutions = evolutions.chain.evolves_to.map((evol) => {
-          const allEvolutions = [];
-          const evolution = {
-            name: evol.species.name,
-            level: evol.evolution_details[0].min_level,
-          };
-
-          allEvolutions.push(evolution);
-
-          console.log('allEvolutions', allEvolutions, evolutions);
-
-          allEvolutions.push(evol.evolves_to.map((subEvol) => {
-            const evolution2 = {
-              name: subEvol.species.name,
-              level: subEvol.evolution_details[0].min_level,
-            };
-            return evolution2;
-          }));
-
-          return allEvolutions;
-        });
-        console.info('gr', computedEvolutions);
-        // this.data = { ...this.data, ...{ evolutions: computedEvolutions } };
-
-      });
     },
     getTypeColor: (type) => {
       if (!type) return '';

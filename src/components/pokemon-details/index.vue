@@ -24,6 +24,11 @@
         </ul>
       </header>
       <section>
+        <ul>
+          <li v-for="evolution in data.evolutions">
+            {{ evolution }}
+          </li>
+        </ul>
         <button class="btn--reset" type="button" @click="showGamesCover = !showGamesCover">Appears in : </button>
         <ul class="pkmn-details__covers" v-if="showGamesCover">
           <li v-for="cover in allCovers" v-bind:key="cover.version.name">

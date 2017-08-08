@@ -29,15 +29,44 @@ const myComponent = {
 
       if ((id - 1) <= this.store.pokedex.length) {
         this.data = this.store.pokedex[id - 1];
-        return;
+      } else {
+        this.isLoading = true;
+        fetch(`${BASE_URL}/pokemon/${id}/`).then(result => (
+          result.json()
+        )).then((pkmn) => {
+          this.isLoading = false;
+          this.data = pkmn;
+          this.data.evolutions = [];
+        });
       }
-      // @TODO use vuex to take datas from pokedex instead of make useless api call
-      this.isLoading = true;
-      fetch(`${BASE_URL}/pokemon/${id}/`).then(result => (
+
+      fetch(`${BASE_URL}/evolution-chain/${id}/`).then(result => (
         result.json()
-      )).then((pkmn) => {
-        this.isLoading = false;
-        this.data = pkmn;
+      )).then((evolutions) => {
+        const computedEvolutions = evolutions.chain.evolves_to.map((evol) => {
+          const allEvolutions = [];
+          const evolution = {
+            name: evol.species.name,
+            level: evol.evolution_details[0].min_level,
+          };
+
+          allEvolutions.push(evolution);
+
+          console.log('allEvolutions', allEvolutions, evolutions);
+
+          allEvolutions.push(evol.evolves_to.map((subEvol) => {
+            const evolution2 = {
+              name: subEvol.species.name,
+              level: subEvol.evolution_details[0].min_level,
+            };
+            return evolution2;
+          }));
+
+          return allEvolutions;
+        });
+        console.info('gr', computedEvolutions);
+        // this.data = { ...this.data, ...{ evolutions: computedEvolutions } };
+
       });
     },
     getTypeColor: (type) => {

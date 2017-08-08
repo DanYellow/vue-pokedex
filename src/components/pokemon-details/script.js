@@ -61,11 +61,13 @@ const myComponent = {
   filters: {
     capitalize: (value) => {
       if (!value) return '';
+
       return v.capitalize(value);
     },
     getPath: (value) => {
       if (!value) return '';
-      return require(`../../assets/games_cover/${value}.png`);
+
+      return `static/assets/games_cover/${value}.png`;
     },
   },
 };

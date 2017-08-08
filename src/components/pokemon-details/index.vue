@@ -39,7 +39,7 @@
     <article class="pkmn-details" v-else>
       <header>
         <figure class="loader">
-          <img src="../../assets/loader.gif" alt="" />
+          <img src="static/assets/loader.gif" alt="" />
         </figure>
         <p>Loading</p>
       </header>

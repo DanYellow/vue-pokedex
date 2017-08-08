@@ -1,5 +1,5 @@
 const BASE_URL = 'http://pokeapi.co/api/v2';
-const MAX_ID = 50;
+const MAX_ID = 51;
 
 const store = {
   state: {
@@ -28,21 +28,6 @@ const store = {
     this.state.filtered = filteredPokedex;
   },
 };
-
-// const fetchPkmn = (limit = []) => {
-//   let pkmnIndex = limit[0];
-//   fetch(`${BASE_URL}/pokemon/${limit[0]}/`).then(result =>
-//     result.json(),
-//   ).then((pkmn) => {
-//     if (limit[0] > limit[1]) {
-//       this.
-//       return;
-//     }
-//     store.addPokemon(pkmn);
-//     pkmnIndex += 1;
-//     fetchPkmn([pkmnIndex, limit[1]]);
-//   });
-// };
 
 store.fetchPkmn([1, MAX_ID]);
 

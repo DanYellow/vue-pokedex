@@ -1,5 +1,5 @@
 const BASE_URL = 'http://pokeapi.co/api/v2';
-const MAX_ID = 51;
+const MAX_ID = 26;
 
 const store = {
   state: {

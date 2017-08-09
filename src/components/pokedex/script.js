@@ -9,6 +9,7 @@ function debounce(a,b,c){var d;return function(){var e=this,f=arguments;clearTim
 /* eslint-enable */
 
 const DELAY_SCROLL = 150;
+const SCROLL_THRESHOLD = 0.85;
 
 const myComponent = {
   components: {
@@ -33,11 +34,13 @@ const myComponent = {
       html.clientHeight, html.scrollHeight, html.offsetHeight);
       const windowCurrentPosition = windowHeight + window.pageYOffset;
 
-      if ((windowCurrentPosition / docHeight) >= 0.7 && store.state.endLoaded) {
-
+      if ((windowCurrentPosition / docHeight) >= SCROLL_THRESHOLD && store.state.endLoaded) {
+        console.log('tr', store.state.pokedex.length);
+        store.state.endLoaded = false;
+        const pokedexLength = store.state.pokedex.length;
         store.fetchPkmn([
-          (store.state.pokedex.length - 0),
-          store.state.pokedex.length + 5,
+          pokedexLength + 1,
+          pokedexLength + 10,
         ]);
       }
     },

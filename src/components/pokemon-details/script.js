@@ -27,13 +27,6 @@ const myComponent = {
     fetchPkmn(id) {
       if (this.isLoading || !id) return;
 
-      window.foo = store.state.pokedex;
-      console.log('store.state.pokedex',
-        (id - 1) <= store.state.pokedex.length,
-        store.state.pokedex.length,
-        (id - 1),
-      );
-
       if ((id - 1) <= store.state.pokedex.length) {
         this.data = store.state.pokedex[id - 1];
       } else {

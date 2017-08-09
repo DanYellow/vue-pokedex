@@ -29,3 +29,4 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 ## TODO
 - Unit tests
 - Improve details pkmn's view
+- Add infinite scroll

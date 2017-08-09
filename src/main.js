@@ -19,7 +19,6 @@ new Vue({
   },
   watch: {
     '$route.query.id': (id) => {
-      console.log('ff', id);
       if (id) {
         document.body.classList.add('popin');
       } else {

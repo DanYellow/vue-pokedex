@@ -1,5 +1,5 @@
 <template>
-  <div class="pokedex-wrapper">
+  <div class="pokedex-wrapper" v-infinite-scroll>
     <searchbox></searchbox>
     <div class="pokedex" v-if="state.filtered.length > 0">
       <div style="flex: 2;">

@@ -27,8 +27,15 @@ const myComponent = {
     fetchPkmn(id) {
       if (this.isLoading || !id) return;
 
-      if ((id - 1) <= this.store.pokedex.length) {
-        this.data = this.store.pokedex[id - 1];
+      window.foo = store.state.pokedex;
+      console.log('store.state.pokedex',
+        (id - 1) <= store.state.pokedex.length,
+        store.state.pokedex.length,
+        (id - 1),
+      );
+
+      if ((id - 1) <= store.state.pokedex.length) {
+        this.data = store.state.pokedex[id - 1];
       } else {
         this.isLoading = true;
         fetch(`${BASE_URL}/pokemon/${id}/`).then(result => (

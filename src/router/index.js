@@ -13,8 +13,8 @@ export default new Router({
       component: Pokedex,
       children: [{
         path: ':name',
-        component: PokemonDetails,
         name: 'pokemon',
+        component: PokemonDetails,
         props: true,
       }],
     },

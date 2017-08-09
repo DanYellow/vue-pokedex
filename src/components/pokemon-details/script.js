@@ -26,25 +26,39 @@ const myComponent = {
   methods: {
     fetchPkmn(name) {
       if (this.isLoading || !name) return;
+      this.isLoading = true;
+
       const currentPkmn = store.state.pokedex.find((pkmn) => (
         pkmn.name === name
       ));
       if (currentPkmn) {
         this.data = currentPkmn;
       } else {
-        this.isLoading = true;
-        fetch(`${BASE_URL}/pokemon/${id}/`).then(result => (
+        fetch(`${BASE_URL}/pokemon/${name}/`).then(result => (
           result.json()
         )).then((pkmn) => {
           this.isLoading = false;
           this.data = pkmn;
-          this.data.evolutions = [];
+          this.data.description = [];
         });
       }
+
+      fetch(`${BASE_URL}/pokemon-species/${name}/`).then(result => (
+          result.json()
+        )).then((pkmn) => {
+          this.data.description = this.getDescForLocale(
+            pkmn.flavor_text_entries
+          );
+        });
     },
     getTypeColor: (type) => {
       if (!type) return '';
       return Utils.typeColor(type);
+    },
+    getDescForLocale: (descriptions, locale = 'fr') => {
+      return descriptions.find((description) => (
+        description.language.name === locale
+      ));
     },
     convertUnit: (unit, type) => Utils.unitConvertion(unit, type),
   },

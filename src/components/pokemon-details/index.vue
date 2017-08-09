@@ -18,17 +18,16 @@
           <li
             v-for="type in data.types"
             :class="type.type.name"
+            :key="type.type.name"
             :style="{ 'background-color': getTypeColor(type.type.name) }" >
             {{ type.type.name }}
           </li>
         </ul>
+        <p>
+          {{ data.description }}
+        </p>
       </header>
       <section>
-        <ul>
-          <li v-for="evolution in data.evolutions">
-            {{ evolution }}
-          </li>
-        </ul>
         <button class="btn--reset btn--toggle-covers" type="button" @click="showGamesCover = !showGamesCover">
           Appears in :
           <span

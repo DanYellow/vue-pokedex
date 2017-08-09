@@ -1,6 +1,6 @@
 <template>
   <li class="pkmn" ref="pkmn" :class="{ selected: isSelected }">
-    <router-link :to="{ path: 'pokemon', query: { id: pkmn.id } }">
+    <router-link :to="{ path: 'pokemon', query: { name: pkmn.name } }">
       <img
         v-on:load="imageReady"
         v-on:error="imageReady"

@@ -35,7 +35,6 @@ const myComponent = {
       const windowCurrentPosition = windowHeight + window.pageYOffset;
 
       if ((windowCurrentPosition / docHeight) >= SCROLL_THRESHOLD && store.state.endLoaded) {
-        console.log('tr', store.state.pokedex.length);
         store.state.endLoaded = false;
         const pokedexLength = store.state.pokedex.length;
         store.fetchPkmn([

@@ -8,11 +8,11 @@ const BASE_URL = 'http://pokeapi.co/api/v2';
 const myComponent = {
   props: ['pkmn-details'],
   created() {
-    this.fetchPkmn(this.$route.query.id);
+    this.fetchPkmn(this.$route.query.name);
   },
   watch: {
-    '$route.query.id': (id) => {
-      this.fetchPkmn(id);
+    '$route.query.name': (name) => {
+      this.fetchPkmn(name);
     },
   },
   data() {
@@ -24,11 +24,13 @@ const myComponent = {
     };
   },
   methods: {
-    fetchPkmn(id) {
-      if (this.isLoading || !id) return;
-
-      if ((id - 1) <= store.state.pokedex.length) {
-        this.data = store.state.pokedex[id - 1];
+    fetchPkmn(name) {
+      if (this.isLoading || !name) return;
+      const currentPkmn = store.state.pokedex.find((pkmn) => (
+        pkmn.name === name
+      ));
+      if (currentPkmn) {
+        this.data = currentPkmn;
       } else {
         this.isLoading = true;
         fetch(`${BASE_URL}/pokemon/${id}/`).then(result => (

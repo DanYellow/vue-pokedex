@@ -13,13 +13,13 @@ new Vue({
   template: '<App/>',
   components: { App },
   created() {
-    if (this.$route.query.id) {
+    if (this.$route.query.name) {
       document.body.classList.add('popin');
     }
   },
   watch: {
-    '$route.query.id': (id) => {
-      if (id) {
+    '$route.query.name': (name) => {
+      if (name) {
         document.body.classList.add('popin');
       } else {
         document.body.classList.remove('popin');

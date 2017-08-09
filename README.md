@@ -28,5 +28,5 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 
 ## TODO
 - Unit tests
-- Improve details pkmn's view
-- Add infinite scroll
+- [x] Improve details pkmn's view
+- [x] Add infinite scroll

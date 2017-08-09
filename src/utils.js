@@ -123,7 +123,12 @@ export default class Utils {
   }
 
   static getWeaknessAndImmunes(pkmnTypes) {
-    const result = {};
+    const group = [];
+
+    if (!pkmnTypes) {
+      return group;
+    }
+
     const listTypes = {
       bug: 'B',
       water: 'W',
@@ -145,23 +150,31 @@ export default class Utils {
       grass: 'G',
     };
 
-    // Type offensif, type defensif
+    // Offensive type, Defensif type
     let pkmnType = null;
+    const result = {};
     for (let i = 0; i < Object.keys(listTypes).length; i += 1) {
       pkmnType = Object.keys(listTypes)[i];
-      result[pkmnType] = this.computeMatchup(listTypes[pkmnType], pkmnTypes.split('/').map(type => listTypes[type]).join('/'));
+      result[pkmnType] = this.computeMatchup(
+        listTypes[pkmnType], pkmnTypes.map(type => listTypes[type]).join('/'),
+      );
     }
 
-    const group = [];
-    result.keys.forEach((key) => {
-      group.push({ type: key.capitalizeFirstLetter(), effetiveness: result[key] });
+    Object.keys(result).forEach((key) => {
+      group.push({ type: key, effetiveness: result[key] });
     });
-    // for (const key in result.keys) {
-    //   if ({}.hasOwnProperty.call(result, key)) {
-    //     group.push({ type: key.capitalizeFirstLetter(), effetiveness: result[key] });
-    //   }
-    // }
 
-    return group;
+    const resultGrouped = {};
+    group.forEach((type) => {
+      if (resultGrouped[type.effetiveness]) {
+        const currentEffectiveness = resultGrouped[type.effetiveness];
+        currentEffectiveness.push(type);
+        resultGrouped[type.effetiveness] = currentEffectiveness;
+      } else {
+        resultGrouped[type.effetiveness] = [type];
+      }
+    });
+
+    return resultGrouped;
   }
 }

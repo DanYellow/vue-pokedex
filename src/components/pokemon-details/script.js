@@ -23,6 +23,7 @@ const myComponent = {
       data: {},
       isLoading: false,
       showGamesCover: false,
+      showWeaknessAndImmunes: false,
       showDescriptions: false,
       store: store.state,
       currentDescriptionIndex: 0,
@@ -45,6 +46,9 @@ const myComponent = {
           this.isLoading = false;
           this.data = pkmn;
           this.data.descriptions = [];
+          this.data.weaknessAndImmunes = Utils.getWeaknessAndImmunes(this.data.types.map((type) => {
+            return type.type.name;
+          }));
         });
       }
 
@@ -82,7 +86,6 @@ const myComponent = {
       const offset = - (index * d.querySelector('.pkmn-details__descriptions').offsetWidth);
       this.currentDescriptionIndex = index;
       d.querySelector('.pkmn-details__descriptions').style.transform = `translate3d(${offset}px, 0, 0)`;
-      
     }
   },
   computed: {

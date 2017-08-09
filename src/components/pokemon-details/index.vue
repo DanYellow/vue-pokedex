@@ -63,7 +63,37 @@
             </li>
           </ul>
         </section>
-        
+      </section>
+      
+      <section>
+        <button class="btn--reset btn--toggle-covers" type="button" @click="showWeaknessAndImmunes = !showWeaknessAndImmunes">
+          Weakness and Immunes :
+          <span
+            v-bind:class="{ 'icon-chevron-down': !showWeaknessAndImmunes, 'icon-chevron-up': showWeaknessAndImmunes }"></span>
+        </button>
+        <div v-show="showWeaknessAndImmunes">
+          <ul class="pkmn-details__slider__effectiveness">
+            <li v-for="(effectiveness, multiplier, index) in data.weaknessAndImmunes" v-bind:key="multiplier">
+              <p>{{ multiplier }}</p>
+              <ul class="pkmn-details__slider__effectiveness-types">
+                <li :style="{ 'background-color': getTypeColor(type.type) }" 
+                v-for="type in effectiveness" v-bind:key="type.type">
+                  <span>
+                    {{ type.type }}
+                  </span>
+                </li> 
+              </ul>
+            </li>
+          </ul>
+
+          <p>
+            Legend : <br />
+              - 2x / 4x : Super effective <br />
+              - 1x : Effective <br />
+              - .5x / .25x : Not very effective <br />
+              - 0x : Not effective <br />
+          </p>
+        </div>
       </section>
       <section>
         <button class="btn--reset btn--toggle-covers" type="button" @click="showGamesCover = !showGamesCover">

@@ -68,6 +68,10 @@
       color: whitesmoke;
     }
   }
+
+  > section {
+    padding: 10px 0;
+  }
 }
 
 header {
@@ -195,4 +199,25 @@ figure {
 
 .characteristics li:last-child:after {
   content: '';
+}
+
+.pkmn-details__slider__effectiveness {
+  &-types {
+    display: flex;
+    flex-wrap: wrap;
+    li {
+      margin-right: 5px;
+      border-radius: 5px;
+      margin-right: 5px;
+      margin-bottom: 5px;
+      padding: 3px 5px;
+      span {
+        color: white;
+        font-weight: bold;
+        
+        
+
+      }
+    }
+  }
 }

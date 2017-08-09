@@ -28,6 +28,44 @@
         </p>
       </header>
       <section>
+        <button class="btn--reset btn--toggle-covers" type="button" @click="showDescriptions = !showDescriptions">
+          Descriptions :
+          <span
+            v-bind:class="{ 'icon-chevron-down': !showDescriptions, 'icon-chevron-up': showDescriptions }"></span>
+        </button>
+        <section class="pkmn-details__slider" v-show="showDescriptions">
+          <ul class="pkmn-details__descriptions">
+            <li v-for="(covers, version) in data.descriptions" v-bind:key="version">
+              <section>
+                <figure>
+                  <img
+                  v-bind:src="version | getPath"
+                  v-bind:alt="'pokemon ' + version"
+                  v-bind:title="'pokemon ' + version"
+                  width="90" />
+                </figure>
+                <ul class="" v-show="showDescriptions">
+                  <li class="pkmn-details__description" v-for="description in covers" v-bind:key="description.language.name">
+                    <h6>{{ description.language.name }}</h6>
+                    <p>{{ description.flavor_text }}</p>
+                  </li>
+                </ul>
+              </section>
+            </li>
+          </ul>
+
+          <ul class="pkmn-details__slider__bullets">
+            <li v-for="(covers, version, index) in data.descriptions" v-bind:key="version">
+              <button 
+                :class="{ 'active': (currentDescriptionIndex === index) }"
+                :title="'Descrption for Pokemon version ' + version" 
+                type="button" class="btn--reset" @click="scrollToDesc(index)">{{ index + 1 }}</button>
+            </li>
+          </ul>
+        </section>
+        
+      </section>
+      <section>
         <button class="btn--reset btn--toggle-covers" type="button" @click="showGamesCover = !showGamesCover">
           Appears in :
           <span

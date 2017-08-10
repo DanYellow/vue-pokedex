@@ -11,7 +11,7 @@ const SearchBox = {
     searchResult() {
       const filteredPokemon = this.pokedex.pokedex.filter((pkmn) => {
         const pkmnName = pkmn.name;
-        return pkmnName.includes(this.query);
+        return pkmnName.includes(this.query.toLowerCase());
       });
 
       store.setPokedex(filteredPokemon);

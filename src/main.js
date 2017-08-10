@@ -6,6 +6,10 @@ import router from './router';
 
 Vue.config.productionTip = false;
 
+const KEYS = {
+  ESCAPE: 27,
+};
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
@@ -13,6 +17,7 @@ new Vue({
   template: '<App/>',
   components: { App },
   created() {
+    document.body.addEventListener('keydown', this.handleEscapeKey);
     if (this.$route.query.name) {
       document.body.classList.add('popin');
     }
@@ -23,6 +28,13 @@ new Vue({
         document.body.classList.add('popin');
       } else {
         document.body.classList.remove('popin');
+      }
+    },
+  },
+  methods: {
+    handleEscapeKey(e) {
+      if (e.keyCode === KEYS.ESCAPE) {
+        window.location = '#/';
       }
     },
   },

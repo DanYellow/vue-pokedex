@@ -110,13 +110,13 @@ header {
       font-weight: bold;
     }
   }
-} 
+}
 
 .pkmn-details__descriptions {
   white-space: nowrap;
   margin-top: 15px;
-  transition: transform .95s ease-out;
-  will-change: transform;
+  transition: transform .95s ease-out, height .3s ease-out;
+  will-change: transform, height;
   > * {
     width: 100%;
     display: inline-block;
@@ -214,8 +214,8 @@ figure {
       span {
         color: white;
         font-weight: bold;
-        
-        
+
+
 
       }
     }

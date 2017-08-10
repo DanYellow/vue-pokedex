@@ -3,20 +3,39 @@ input[type="search"] {
 	outline: none;
 	border: 1px solid black;
 
-	width: 100%;
+  width: inherit;
 	height: 40px;
 	font-size: 20px;
 
-	margin: 0 10px 0 0;
 	padding: 0 10px;
 }
 
-form {
+.form-search {
   padding: 0 10px;
   display: flex;
   align-items: center;
 
+  .input__filter {
+    flex: 2 1 10%;
+    text-align: center;
+    padding: 11px 5px;
+    border: 1px solid black;
+    border-right: 0;
+    color: white;
+    background-color: black;
+    font-weight: 700;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+
   .nb-results {
     white-space: nowrap;
+  }
+
+  &__input {
+    width: 100%;
+    margin: 0 10px 0 0;
+    display: flex;
+    align-items: center;
   }
 }

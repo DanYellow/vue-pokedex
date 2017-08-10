@@ -4,15 +4,13 @@ import store from '@/store';
 import Utils from '@/utils';
 
 const BASE_URL = 'http://pokeapi.co/api/v2';
-const d = document;
+const d = document.body;
 
 const myComponent = {
   props: ['pkmn-details'],
   created() {
     this.fetchPkmn(this.$route.query.name);
     this.$descriptions = d.querySelector('.pkmn-details__descriptions');
-
-
   },
   watch: {
     '$route.query.name': (name) => {
@@ -84,15 +82,17 @@ const myComponent = {
     },
     convertUnit: (unit, type) => Utils.unitConvertion(unit, type),
     scrollToDesc(index = 1) {
-      const offset = -(index * d.querySelector('.pkmn-details__descriptions').offsetWidth);
+      const offset = -(index * this.$descriptions.offsetWidth);
       this.currentDescriptionIndex = index;
       const currentDescHeight = d.querySelectorAll('.pkmn-details__descriptions > li')[index].clientHeight;
 
-      d.querySelector('.pkmn-details__descriptions').addEventListener('transitionend', (e) => {
+      this.$descriptions.addEventListener('transitionend', (e) => {
         e.target.style.height = `${currentDescHeight}px`;
       }, false);
 
-      d.querySelector('.pkmn-details__descriptions').style.transform = `translate3d(${offset}px, 0, 0)`;
+      console.log('dom', this.$descriptions, d.querySelector('.pkmn-details__descriptions'));
+
+      this.$descriptions.style.transform = `translate3d(${offset}px, 0, 0)`;
     },
   },
   computed: {

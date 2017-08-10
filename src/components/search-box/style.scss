@@ -11,9 +11,37 @@ input[type="search"] {
 }
 
 .form-search {
-  padding: 0 10px;
-  display: flex;
-  align-items: center;
+  padding: 0 10px 15px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background-color: white;
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: 30px; right: 30px;
+    bottom: 0;
+    height: 2px;
+    background-color: red;
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: -60px; bottom: 0;
+    left: 0; right: 0;
+    background-color: white;
+    z-index: -1;
+
+  }
+
+  
+  &__input-wrapper {
+    display: flex;
+    align-items: center;
+  }
 
   .input__filter {
     flex: 2 1 10%;
@@ -37,5 +65,27 @@ input[type="search"] {
     margin: 0 10px 0 0;
     display: flex;
     align-items: center;
+    position: relative;
   }
+}
+
+
+input:focus ~ .floating-label {
+  top: -20px;
+  opacity: 1;
+
+  &:after {
+    content: ' — You can use filters ! E.g. write "kanto" then press "tab" key';
+    font-size: 12px;
+  }
+}
+
+.floating-label {
+  position: absolute;
+  pointer-events: none;
+  left: 10px;
+  top: 14px;
+  opacity: .5;
+  transition: 0.2s ease top;
+  will-change: top;
 }

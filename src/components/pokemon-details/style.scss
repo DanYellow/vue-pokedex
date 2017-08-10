@@ -41,6 +41,7 @@
   background-color: rgba(0, 0, 0, .5);
   overflow-x: hidden;
   overflow-y: auto;
+  z-index: 1000;
 }
 
 .pkmn-details {
@@ -126,6 +127,12 @@ header {
 
   section {
     display: flex;
+    @media screen and (max-width: 600px) {
+      flex-direction: column;
+      justify-content: center;
+      align-content: center;
+      align-items: center;
+    }
   }
 
   figure {

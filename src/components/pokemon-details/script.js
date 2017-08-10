@@ -82,17 +82,15 @@ const myComponent = {
     },
     convertUnit: (unit, type) => Utils.unitConvertion(unit, type),
     scrollToDesc(index = 1) {
-      const offset = -(index * this.$descriptions.offsetWidth);
+      const offset = -(index * d.querySelector('.pkmn-details__descriptions').offsetWidth);
       this.currentDescriptionIndex = index;
       const currentDescHeight = d.querySelectorAll('.pkmn-details__descriptions > li')[index].clientHeight;
 
-      this.$descriptions.addEventListener('transitionend', (e) => {
+      d.querySelector('.pkmn-details__descriptions').addEventListener('transitionend', (e) => {
         e.target.style.height = `${currentDescHeight}px`;
       }, false);
 
-      console.log('dom', this.$descriptions, d.querySelector('.pkmn-details__descriptions'));
-
-      this.$descriptions.style.transform = `translate3d(${offset}px, 0, 0)`;
+      d.querySelector('.pkmn-details__descriptions').style.transform = `translate3d(${offset}px, 0, 0)`;
     },
   },
   computed: {

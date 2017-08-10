@@ -1,20 +1,19 @@
 import store from '@/store';
 
-const kantoRange = { name: 'kanto', range: [1, 151] };
-const tsehoRange = { name: 'kanto', range: [1, 11] };
-const johtoRange = { name: 'johto', range: [152, 251] };
-const hoennRange = { name: 'hoenn', range: [252, 386] };
-const sinnohRange = { name: 'sinnoh', range: [387, 493] };
-const unysRange = { name: 'unys', range: [494, 649] };
-const kalosRange = { name: 'kalos', range: [650, 721] };
+const kantoRange = { names: ['kanto', '1g', 'tseho'], range: [1, 151] };
+const johtoRange = { names: ['johto', '2g'], range: [152, 251] };
+const hoennRange = { names: ['hoenn', '3g'], range: [252, 386] };
+const sinnohRange = { names: ['sinnoh', '4g'], range: [387, 493] };
+const unysRange = { names: ['unys', '5g'], range: [494, 649] };
+const kalosRange = { names: ['kalos', '6g'], range: [650, 721] };
 
-const REGIONS = [kantoRange, tsehoRange, johtoRange,
+const REGIONS = [kantoRange, johtoRange,
   hoennRange, sinnohRange, unysRange, kalosRange];
 
 const SearchBox = {
   created() {
     this.filters = {
-      generations: ['tseho', '1g', 'kanto', 'hoenn', 'johto', 'sinnoh', 'unys', 'kalos', 'aloha'],
+      generations: ['tseho', 'kanto', 'hoenn', 'johto', 'sinnoh', 'unys', 'kalos', 'aloha'],
       types: ['fire', 'water', 'ground', 'bug', 'steel', 'electric', 'ice', 'rock', 'normal', 'flying', 'dark', 'psychic', 'dragon', 'poison', 'ghost', 'fighting', 'fairy', 'fire', 'grass'],
     };
   },
@@ -43,7 +42,9 @@ const SearchBox = {
       e.preventDefault();
 
       Object.keys(this.filters).forEach((key) => {
-        if (this.filters[key].includes(this.query.toLowerCase())) {
+        if (this.filters[key].includes(this.query.toLowerCase()) ||
+          /^[1-5]g$/.test(this.query.toLowerCase())
+        ) {
           this.filter.name = this.query;
           this.filter.type = key;
           this.query = '';
@@ -62,10 +63,17 @@ const SearchBox = {
       return this.pokedex.pokedex.filter((pkmn) => {
         switch (this.filter.type) {
           case 'generations':
-            console.log('t',
-              REGIONS.filter(region => (pkmn.id >= region.range[0] && pkmn.id <= region.range[1]))
-            );
-            return REGIONS.filter(region => (pkmn.id >= region.range[0] && pkmn.id <= region.range[1]));
+            let indexRegion = 0;
+            REGIONS.forEach((region, index) => {
+              region.names.forEach((regionAlias) => {
+                if (regionAlias === this.filter.name) {
+                  indexRegion = index;
+                }
+              })
+            });
+            const currentRegion = REGIONS[indexRegion];
+
+            return (pkmn.id >= currentRegion.range[0] && pkmn.id <= currentRegion.range[1]);
           case 'types':
             return pkmn.types.filter(type => (type.type.name === this.filter.name)).length > 0;
           default: return true;

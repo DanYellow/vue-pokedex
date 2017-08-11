@@ -19,7 +19,6 @@
       </figure>
       <p>No results</p>
     </div>
-    
   </div>
 </template>
 

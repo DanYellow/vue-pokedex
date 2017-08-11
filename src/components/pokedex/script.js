@@ -36,7 +36,8 @@ const myComponent = {
       html.clientHeight, html.scrollHeight, html.offsetHeight);
       const windowCurrentPosition = windowHeight + window.pageYOffset;
 
-      if ((windowCurrentPosition / docHeight) >= SCROLL_THRESHOLD && store.state.endLoaded) {
+      console.log('store.state.isFilterEnabled', store.state.isFilterEnabled);
+      if ((windowCurrentPosition / docHeight) >= SCROLL_THRESHOLD && store.state.endLoaded && !store.state.isFilterEnabled) {
         store.state.endLoaded = false;
         const pokedexLength = store.state.pokedex.length;
         store.fetchPkmn([

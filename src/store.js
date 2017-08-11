@@ -6,6 +6,7 @@ const store = {
     pokedex: [],
     filtered: [],
     endLoaded: false,
+    isFilterEnabled: false,
   },
   fetchPkmn(limit = []) {
     let pkmnIndex = limit[0];
@@ -19,6 +20,8 @@ const store = {
       this.addPokemon(pkmn);
       pkmnIndex += 1;
       this.fetchPkmn([pkmnIndex, limit[1]]);
+    }).catch(() => {
+      // this.fetchPkmn([pkmnIndex, limit[1]]);
     });
   },
   addPokemon(pkmn) {
@@ -26,6 +29,12 @@ const store = {
   },
   setPokedex(filteredPokedex) {
     this.state.filtered = filteredPokedex;
+  },
+  toggleInfiniteScroll(canInfinite) {
+    this.state.isFilterEnabled = canInfinite;
+    if (!this.state.isFilterEnabled) {
+      this.state.endLoaded = true;
+    }
   },
 };
 

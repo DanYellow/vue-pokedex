@@ -48,12 +48,14 @@ const SearchBox = {
           this.filter.name = this.query;
           this.filter.type = key;
           this.query = '';
+          store.toggleInfiniteScroll(true);
         }
       });
     },
     deleteFilter() {
       if (this.query === '') {
         this.filter = {};
+        store.toggleInfiniteScroll(false);
       }
     },
     preFilterPokemon() {

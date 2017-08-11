@@ -6,7 +6,6 @@ import PokemonDetails from '@/components/pokemon-details';
 Vue.use(Router);
 
 export default new Router({
-  mode: (process.env.NODE_PATH === 'prod') ? 'history' : 'hash',
   routes: [
     {
       path: '/',

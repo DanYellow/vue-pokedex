@@ -11,6 +11,7 @@
         </ol>
       </div>
       <router-view></router-view>
+      <loader v-if="!state.endLoaded" />
     </div>
     <div class="pokedex-wrapper__no-results" v-else-if="state.filtered.length === 0 && state.endLoaded">
       <figure>
@@ -18,6 +19,7 @@
       </figure>
       <p>No results</p>
     </div>
+    
   </div>
 </template>
 

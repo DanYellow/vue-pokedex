@@ -32,3 +32,4 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 - [x] Add infinite scroll
 - [x] Filters
 - [] Multiple filters
+- [] Disable fetch when a filter is enabled

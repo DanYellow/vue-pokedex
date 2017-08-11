@@ -1,6 +1,7 @@
 import Pokemon from '@/components/pokemon';
 import PokemonDetails from '@/components/pokemon-details';
 import SearchBox from '@/components/search-box';
+import Loader from '@/components/loader';
 
 import store from '@/store';
 
@@ -16,6 +17,7 @@ const myComponent = {
     pokemon: Pokemon,
     'pkmn-details': PokemonDetails,
     searchbox: SearchBox,
+    loader: Loader,
   },
   created() {
     window.addEventListener('scroll', debounce(this.loadMore.bind(this), DELAY_SCROLL));

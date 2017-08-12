@@ -44,7 +44,7 @@ const myComponent = {
       if (this.isLoading || !name) return;
       this.isLoading = true;
 
-      const currentPkmn = store.state.pokedex.find(pkmn => (
+      const currentPkmn = store.getters.pokedex.find(pkmn => (
         pkmn.name === name
       ));
       if (currentPkmn) {

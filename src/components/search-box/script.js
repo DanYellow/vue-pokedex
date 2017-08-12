@@ -25,8 +25,7 @@ const SearchBox = {
   },
   computed: {
     pokedex() {
-      const { isPokedexFiltering, filtered, pokedex } = this.$store.state;
-      return (isPokedexFiltering) ? filtered : pokedex;
+      return this.$store.getters.pokedex;
     },
   },
   methods: {
@@ -53,7 +52,7 @@ const SearchBox = {
       }
     },
     preFilterPokemon() {
-      const immutablePokedex = store.state.pokedex;
+      const immutablePokedex = store.getters.pokedex;
 
       if (!Object.keys(this.filter).length) {
         return immutablePokedex;

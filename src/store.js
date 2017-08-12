@@ -10,14 +10,14 @@ const MAX_ID = 20;
 
 const store = new Vuex.Store({
   state: {
-    pokedex: [],
+    ipokedex: [], // i for "immutable"
     filtered: [],
     endLoaded: false,
     isPokedexFiltering: false,
   },
   mutations: {
     fetchPkmn(state, pkmn) {
-      state.pokedex = [...state.pokedex, pkmn];
+      state.ipokedex = [...state.ipokedex, pkmn];
     },
     filteredPkmn(state, filteredDex) {
       state.filtered = filteredDex;
@@ -44,6 +44,12 @@ const store = new Vuex.Store({
       }).catch(() => {
         store.dispatch('fetchPkmn', [pkmnIndex, limit[1]]);
       });
+    },
+  },
+  getters: {
+    pokedex: (state) => {
+      const { isPokedexFiltering, filtered, ipokedex } = state;
+      return (isPokedexFiltering) ? filtered : ipokedex;
     },
   },
 });

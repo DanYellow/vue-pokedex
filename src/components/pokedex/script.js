@@ -34,7 +34,7 @@ const myComponent = {
 
       if (hasReachScrollThreshold && endLoaded && !isPokedexFiltering) {
         this.$store.state.endLoaded = false;
-        const pokedexLength = this.$store.state.pokedex.length;
+        const pokedexLength = this.$store.getters.pokedex.length;
 
         this.$store.dispatch('fetchPkmn', [
           pokedexLength + 1,
@@ -45,15 +45,14 @@ const myComponent = {
   },
   computed: {
     pokedex() {
-      const { isPokedexFiltering, filtered, pokedex } = this.$store.state;
-      return (isPokedexFiltering) ? filtered : pokedex;
+      return this.$store.getters.pokedex;
     },
     endLoaded() {
       return this.$store.state.endLoaded;
     },
     isPokedexFiltering() {
       return this.$store.state.isPokedexFiltering;
-    }
+    },
   },
 };
 

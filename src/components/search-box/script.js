@@ -20,21 +20,13 @@ const SearchBox = {
   data() {
     return {
       query: '',
-      pokedex: store.state,
       filter: {},
     };
   },
   computed: {
-    searchResult() {
-      const dexPrefiltered = this.preFilterPokemon(this.pokedex.pokedex);
-      const filteredPokemon = dexPrefiltered.filter((pkmn) => {
-        const pkmnName = pkmn.name;
-        return pkmnName.includes(this.query.toLowerCase());
-      });
-
-      // store.setPokedex(filteredPokemon);
-
-      return filteredPokemon;
+    pokedex() {
+      const { isPokedexFiltering, filtered, pokedex } = this.$store.state;
+      return (isPokedexFiltering) ? filtered : pokedex;
     },
   },
   methods: {
@@ -48,39 +40,58 @@ const SearchBox = {
           this.filter.name = this.query;
           this.filter.type = key;
           this.query = '';
-          store.toggleInfiniteScroll(true);
+          this.$store.commit('isPokedexFiltering');
+          // store.toggleInfiniteScroll(true);
         }
       });
     },
     deleteFilter() {
       if (this.query === '') {
         this.filter = {};
-        store.toggleInfiniteScroll(false);
+        this.$store.commit('isPokedexFiltering', false);
+        // store.toggleInfiniteScroll(false);
       }
     },
     preFilterPokemon() {
+      const immutablePokedex = store.state.pokedex;
+
       if (!Object.keys(this.filter).length) {
-        return this.pokedex.pokedex;
+        return immutablePokedex;
       }
-      return this.pokedex.pokedex.filter((pkmn) => {
+      return immutablePokedex.filter((pkmn) => {
         switch (this.filter.type) {
-          case 'generations':
+          case 'generations': {
             let indexRegion = 0;
             REGIONS.forEach((region, index) => {
               region.names.forEach((regionAlias) => {
                 if (regionAlias === this.filter.name) {
                   indexRegion = index;
                 }
-              })
+              });
             });
             const currentRegion = REGIONS[indexRegion];
 
             return (pkmn.id >= currentRegion.range[0] && pkmn.id <= currentRegion.range[1]);
+          }
           case 'types':
             return pkmn.types.filter(type => (type.type.name === this.filter.name)).length > 0;
           default: return true;
         }
       });
+    },
+    filterPkmn() {
+      if (!this.query && !Object.keys(this.filter).length) {
+        this.$store.commit('isPokedexFiltering', false);
+        return;
+      }
+      const dexPrefiltered = this.preFilterPokemon(this.pokedex);
+
+      const filteredPokemon = dexPrefiltered.filter((pkmn) => {
+        const pkmnName = pkmn.name;
+        return pkmnName.includes(this.query.toLowerCase());
+      });
+      this.$store.commit('isPokedexFiltering');
+      store.commit('filteredPkmn', filteredPokemon);
     },
   },
 };

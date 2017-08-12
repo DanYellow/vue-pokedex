@@ -37,7 +37,6 @@ input[type="search"] {
 
   }
 
-  
   &__input-wrapper {
     display: flex;
     align-items: center;
@@ -70,7 +69,8 @@ input[type="search"] {
 }
 
 
-input:focus ~ .floating-label {
+input:focus ~ .floating-label,
+input:not(:focus):valid ~ .floating-label {
   top: -20px;
   opacity: 1;
 

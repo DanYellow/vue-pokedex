@@ -1,3 +1,4 @@
+/* eslint-disable */
 import v from 'voca';
 
 import store from '@/store';

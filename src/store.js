@@ -6,18 +6,24 @@ import Vue from 'vue';
 Vue.use(Vuex);
 
 const BASE_URL = 'http://pokeapi.co/api/v2';
-const MAX_ID = 10;
+const MAX_ID = 20;
 
 const store = new Vuex.Store({
   state: {
     pokedex: [],
     filtered: [],
     endLoaded: false,
-    isFilterEnabled: false,
+    isPokedexFiltering: false,
   },
   mutations: {
     fetchPkmn(state, pkmn) {
       state.pokedex = [...state.pokedex, pkmn];
+    },
+    filteredPkmn(state, filteredDex) {
+      state.filtered = filteredDex;
+    },
+    isPokedexFiltering(state, isPokedexFiltering = true) {
+      state.isPokedexFiltering = isPokedexFiltering;
     },
   },
   actions: {

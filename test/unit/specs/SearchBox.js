@@ -1,7 +1,7 @@
 // import Vue from 'vue';
 // import SearchBox from '@/components/search-box';
 
-describe('SearchBox.vue', () => {
+ddescribe('SearchBox.vue', () => {
   it('should render correct contents', () => {
     expect(4).toBeEqual(4);
     // expect(typeof SearchBox.created).toBe('function');

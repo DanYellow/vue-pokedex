@@ -7,12 +7,14 @@
           <input
             @keydown.tab="displayFilter"
             @keydown.delete="deleteFilter"
+            @keyup="filterPkmn"
             type="search"
+            required
             v-model="query" />
           <span class="floating-label">Pokémon's name</span>
         </div>
       </div>
-      <p class="nb-results">{{ searchResult.length }} result(s)</p>
+      <p class="nb-results">{{ pokedex.length }} result(s)</p>
     </div>
   </form>
 </template>

@@ -12,9 +12,9 @@
         </ol>
       </div>
       <router-view></router-view>
-      <loader v-if="!state.endLoaded" />
+      <loader v-if="!endLoaded" />
     </div>
-    <div class="pokedex-wrapper__no-results" v-else-if="state.filtered.length === 0 && state.endLoaded">
+    <div class="pokedex-wrapper__no-results" v-else-if="pokedex.length === 0 && endLoaded && isPokedexFiltering">
       <figure>
         <img src="https://media1.giphy.com/media/nLIiW6wj9WnSM/giphy.gif" alt="">
       </figure>

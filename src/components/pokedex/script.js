@@ -36,7 +36,6 @@ const myComponent = {
       html.clientHeight, html.scrollHeight, html.offsetHeight);
       const windowCurrentPosition = windowHeight + window.pageYOffset;
 
-      console.log('store.state.isFilterEnabled', store.state.isFilterEnabled);
       if ((windowCurrentPosition / docHeight) >= SCROLL_THRESHOLD && store.state.endLoaded && !store.state.isFilterEnabled) {
         store.state.endLoaded = false;
         const pokedexLength = store.state.pokedex.length;
@@ -47,12 +46,11 @@ const myComponent = {
       }
     },
   },
-  directives: {
-    'infinite-scroll': {
-      inserted() {
-      },
-    },
-  },
+  computed: {
+    pokedex () {
+      return this.$store.state.pokedex;
+    }
+  }
 };
 
 export default myComponent;

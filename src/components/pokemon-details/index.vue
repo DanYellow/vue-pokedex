@@ -111,6 +111,7 @@
           </li>
         </ul>
       </section>
+      <a href="#/" class="link--btn">Close</a>
     </article>
     <article class="pkmn-details" v-else>
       <header>

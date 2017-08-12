@@ -1,11 +1,12 @@
 <template>
-  <div class="pokedex-wrapper" v-infinite-scroll>
+  <div class="pokedex-wrapper">
     <searchbox></searchbox>
-    <div class="pokedex" v-if="state.filtered.length > 0">
+    <div class="pokedex" v-if="pokedex.length > 0">
       <div style="flex: 2;">
+        <p>foo : {{ pokedex.length }}</p>
         <ol>
           <pokemon
-            v-for="pkmn in state.filtered"
+            v-for="pkmn in pokedex"
             v-bind:pkmn="pkmn"
             v-bind:key="pkmn.id"></pokemon>
         </ol>

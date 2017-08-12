@@ -32,7 +32,7 @@ const SearchBox = {
         return pkmnName.includes(this.query.toLowerCase());
       });
 
-      store.setPokedex(filteredPokemon);
+      // store.setPokedex(filteredPokemon);
 
       return filteredPokemon;
     },

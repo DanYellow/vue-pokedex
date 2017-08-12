@@ -25,6 +25,9 @@
 .link--btn {
   border-color: black;
   color: black;
+  header &, footer & {
+    text-align: center;
+  }
 }
 
 .btn--toggle-covers {
@@ -82,6 +85,7 @@ header {
   border-bottom: 3px solid #dedbdc;
   padding-bottom: 15px;
 }
+
 
 .pkmn-details__sprite {
   img {
@@ -222,6 +226,23 @@ figure {
         color: white;
         font-weight: bold;
       }
+    }
+  }
+}
+
+.pkmn-details__stats {
+  li {
+    margin-bottom: 7px;
+  }
+  &__bar {
+    background: cadetblue;
+    height: 15px;
+    &:after {
+      content: attr(data-base-stat);
+      display: block;
+      text-align: right;
+      font-weight: bold;
+      color: white;
     }
   }
 }

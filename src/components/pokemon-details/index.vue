@@ -28,6 +28,24 @@
         </p>
       </header>
       <section>
+        <button class="btn--reset btn--toggle-covers" type="button" @click="showStats = !showStats">
+          Base stats :
+          <span
+            v-bind:class="{ 'icon-chevron-down': !showStats, 'icon-chevron-up': showStats }"></span>
+        </button>
+        <section class="pkmn-details__slider" v-show="showStats">
+          <ul class="pkmn-details__stats">
+            <li v-for="stat in data.stats" v-bind:key="stat.stat.name">
+              <span>{{ stat.stat.name }}</span>
+              <div
+                v-bind:style="{ width: `${stat.base_stat}%` }"
+                :data-base-stat="stat.base_stat"
+                class="pkmn-details__stats__bar" style="width: 100%;"></div>
+            </li>
+          </ul>
+        </section>
+      </section>
+      <section>
         <button class="btn--reset btn--toggle-covers" type="button" @click="showDescriptions = !showDescriptions">
           Descriptions :
           <span
@@ -40,8 +58,8 @@
                 <figure>
                   <img
                   v-bind:src="version | getPath"
-                  v-bind:alt="'pokemon ' + version"
-                  v-bind:title="'pokemon ' + version"
+                  v-bind:alt="`pokemon ${version}`"
+                  v-bind:title="`pokemon ${version}`"
                   width="90" />
                 </figure>
                 <ul class="" v-show="showDescriptions">
@@ -111,7 +129,9 @@
           </li>
         </ul>
       </section>
-      <a href="#/" class="link--btn">Close</a>
+      <footer>
+        <a href="#/" class="link--btn">Close</a>
+      </footer>
     </article>
     <article class="pkmn-details" v-else>
       <header>

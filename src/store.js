@@ -28,6 +28,7 @@ const store = new Vuex.Store({
   },
   actions: {
     fetchPkmn({ commit, state, dispatch }, limit = []) {
+      state.endLoaded = false;
       let pkmnIndex = limit[0];
       fetch(`${BASE_URL}/pokemon/${limit[0]}/`).then(result =>
         result.json(),

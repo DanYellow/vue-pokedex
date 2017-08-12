@@ -49,7 +49,7 @@ const myComponent = {
       return (isPokedexFiltering) ? filtered : pokedex;
     },
     endLoaded() {
-      return true;
+      return this.$store.state.endLoaded;
     },
     isPokedexFiltering() {
       return this.$store.state.isPokedexFiltering;

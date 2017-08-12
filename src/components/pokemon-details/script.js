@@ -11,23 +11,25 @@ const myComponent = {
   props: ['pkmn-details'],
   created() {
     this.fetchPkmn(this.$route.query.name);
+  },
+  mounted() {
     this.$descriptionsContainer = null;
     this.$descriptions = null;
   },
   watch: {
     '$route.query.name': (name) => {
       this.fetchPkmn(name);
-    },
+    }
   },
   updated() {
-    if (this.$descriptions === null || this.$descriptionsContainer === null) {
+    if (Object.keys(this.data.descriptions).length && (this.$descriptions === null || this.$descriptionsContainer === null)) {
       this.$descriptionsContainer = d.querySelector('.pkmn-details__descriptions');
       this.$descriptions = d.querySelectorAll('.pkmn-details__descriptions > li');
     }
   },
   data() {
     return {
-      data: { descriptions: [] },
+      data: { descriptions: {} },
       isLoading: false,
       showGamesCover: false,
       showWeaknessAndImmunes: false,
@@ -97,7 +99,7 @@ const myComponent = {
 
       this.$descriptionsContainer.addEventListener('transitionend', (e) => {
         e.target.style.height = `${currentDescHeight}px`;
-      }, false);
+      });
 
       this.$descriptionsContainer.style.transform = `translate3d(${offset}px, 0, 0)`;
     },

@@ -34,7 +34,7 @@ const myComponent = {
       showGamesCover: false,
       showWeaknessAndImmunes: false,
       showDescriptions: false,
-      showStats: false,
+      showStats: true,
       store: store.state,
       currentDescriptionIndex: 0,
     };

@@ -1,5 +1,5 @@
 <template>
-  <form action="" class="form-search" v-on:submit.prevent>
+  <form class="form-search" v-on:submit.prevent novalidate>
     <div class="form-search__input-wrapper">
       <div class="form-search__input">
         <p class="input__filter" v-if="Object.keys(filter).length >= 1">{{ filter.name }}</p>

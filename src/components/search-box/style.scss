@@ -68,7 +68,7 @@ input[type="search"] {
   }
 }
 
-
+// https://jsfiddle.net/273ntk5s
 input:focus ~ .floating-label,
 input:not(:focus):valid ~ .floating-label {
   top: -20px;

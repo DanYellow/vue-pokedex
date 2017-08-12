@@ -11,12 +11,19 @@ const myComponent = {
   props: ['pkmn-details'],
   created() {
     this.fetchPkmn(this.$route.query.name);
-    this.$descriptions = d.querySelector('.pkmn-details__descriptions');
+    this.$descriptionsContainer = null;
+    this.$descriptions = null;
   },
   watch: {
     '$route.query.name': (name) => {
       this.fetchPkmn(name);
     },
+  },
+  updated() {
+    if (this.$descriptions === null || this.$descriptionsContainer === null) {
+      this.$descriptionsContainer = d.querySelector('.pkmn-details__descriptions');
+      this.$descriptions = d.querySelectorAll('.pkmn-details__descriptions > li');
+    }
   },
   data() {
     return {
@@ -84,15 +91,15 @@ const myComponent = {
     },
     convertUnit: (unit, type) => Utils.unitConvertion(unit, type),
     scrollToDesc(index = 1) {
-      const offset = -(index * d.querySelector('.pkmn-details__descriptions').offsetWidth);
+      const offset = -(index * this.$descriptionsContainer.offsetWidth);
       this.currentDescriptionIndex = index;
-      const currentDescHeight = d.querySelectorAll('.pkmn-details__descriptions > li')[index].clientHeight;
+      const currentDescHeight = this.$descriptions[index].clientHeight;
 
-      d.querySelector('.pkmn-details__descriptions').addEventListener('transitionend', (e) => {
+      this.$descriptionsContainer.addEventListener('transitionend', (e) => {
         e.target.style.height = `${currentDescHeight}px`;
       }, false);
 
-      d.querySelector('.pkmn-details__descriptions').style.transform = `translate3d(${offset}px, 0, 0)`;
+      this.$descriptionsContainer.style.transform = `translate3d(${offset}px, 0, 0)`;
     },
   },
   computed: {

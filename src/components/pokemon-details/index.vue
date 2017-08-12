@@ -35,10 +35,10 @@
         </button>
         <section class="pkmn-details__slider" v-show="showStats">
           <ul class="pkmn-details__stats">
-            <li v-for="stat in data.stats" v-bind:key="stat.stat.name">
+            <li v-for="stat in data.stats" :key="stat.stat.name">
               <span>{{ stat.stat.name }}</span>
               <div
-                v-bind:style="{ width: `${stat.base_stat}%` }"
+                v-bind:style="{ width: (stat.base_stat) > 100 ? '100%' : `${stat.base_stat}%` }"
                 :data-base-stat="stat.base_stat"
                 class="pkmn-details__stats__bar" style="width: 100%;"></div>
             </li>

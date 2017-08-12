@@ -6,7 +6,7 @@
         v-on:error="imageReady"
         v-bind:src="pkmn.sprites.front_default"
         width="100" />
-      <p>{{ pkmn.name | capitalize }}</p>
+      <p>{{ pkmn.id }} | {{ pkmn.name | capitalize }}</p>
       <span>{{ data.message }}</span>
     </router-link>
   </li>

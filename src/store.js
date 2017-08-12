@@ -1,7 +1,9 @@
 /* eslint-disable no-param-reassign */
-
+/* eslint-disable */
 import Vuex from 'vuex';
 import Vue from 'vue';
+
+import Utils from './utils';
 
 Vue.use(Vuex);
 
@@ -44,6 +46,28 @@ const store = new Vuex.Store({
       }).catch(() => {
         store.dispatch('fetchPkmn', [pkmnIndex, limit[1]]);
       });
+    },
+    async fetchPkmnByName({ state }, name) {
+      if (!name) return {};
+      let currentPkmn = state.ipokedex.find(pkmn => (
+        pkmn.name === name
+      ));
+
+      if (!currentPkmn) {
+        const distPkmn = await fetch(`${BASE_URL}/pokemon/${name}/?foo`);
+        const distPkmnJson = await distPkmn.json();
+        currentPkmn = { ...currentPkmn, ...distPkmnJson };
+      }
+      const types = currentPkmn.types || [];
+
+      currentPkmn.weaknessAndImmunes = Utils.getWeaknessAndImmunes(
+        types.map(type => type.type.name));
+
+      const descPkmn = await fetch(`${BASE_URL}/pokemon-species/${name}/`);
+      const descPkmnJson = await descPkmn.json();
+      currentPkmn.descriptions = descPkmnJson;
+
+      return currentPkmn;
     },
   },
   getters: {

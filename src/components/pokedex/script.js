@@ -35,7 +35,6 @@ const myComponent = {
       if (hasReachScrollThreshold && endLoaded && !isPokedexFiltering) {
         this.$store.state.endLoaded = false;
         const pokedexLength = this.$store.getters.pokedex.length;
-
         this.$store.dispatch('fetchPkmn', [
           pokedexLength + 1,
           pokedexLength + 10,

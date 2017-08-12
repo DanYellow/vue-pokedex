@@ -52,7 +52,7 @@ const SearchBox = {
       }
     },
     preFilterPokemon() {
-      const immutablePokedex = store.getters.pokedex;
+      const immutablePokedex = store.state.ipokedex;
 
       if (!Object.keys(this.filter).length) {
         return immutablePokedex;

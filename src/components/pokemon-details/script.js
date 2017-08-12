@@ -44,29 +44,11 @@ const myComponent = {
       if (this.isLoading || !name) return;
       this.isLoading = true;
 
-      const currentPkmn = store.getters.pokedex.find(pkmn => (
-        pkmn.name === name
-      ));
-      if (currentPkmn) {
+      this.$store.dispatch('fetchPkmnByName', name).then((currentPkmn) => {
+        this.isLoading = false;
+        currentPkmn.descriptions = this.groupByVersion(currentPkmn.descriptions.flavor_text_entries);
         this.data = currentPkmn;
-      } else {
-        fetch(`${BASE_URL}/pokemon/${name}/`).then(result => (
-          result.json()
-        )).then((pkmn) => {
-          this.isLoading = false;
-          this.data = { ...this.data, ...pkmn };
-        });
-      }
-
-      const types = this.data.types || [];
-      this.data.weaknessAndImmunes = Utils.getWeaknessAndImmunes(types.map(type => type.type.name));
-
-      fetch(`${BASE_URL}/pokemon-species/${name}/`).then(result => (
-          result.json()
-        )).then((pkmn) => {
-          this.isLoading = false;
-          this.data.descriptions = this.groupByVersion(pkmn.flavor_text_entries);
-        });
+      });
     },
     getTypeColor: (type) => {
       if (!type) return '';

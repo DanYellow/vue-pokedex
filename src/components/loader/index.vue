@@ -1,6 +1,8 @@
 <template>
   <div class="pika-loader">
-    <img src="static/assets/pika-loader.gif" />
+    <figure>
+      <img src="static/assets/pika-loader.gif" />
+    </figure>
   </div>
 </template>
 

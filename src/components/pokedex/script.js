@@ -9,6 +9,7 @@ function debounce(a,b,c){var d;return function(){var e=this,f=arguments;clearTim
 
 const DELAY_SCROLL = 150;
 const SCROLL_THRESHOLD = 0.85;
+const NB_PKMN_TO_ADD = 21;
 
 const body = document.body;
 const html = document.documentElement;
@@ -37,7 +38,7 @@ const myComponent = {
         const pokedexLength = this.$store.getters.pokedex.length;
         this.$store.dispatch('fetchPkmn', [
           pokedexLength + 1,
-          pokedexLength + 10,
+          pokedexLength + NB_PKMN_TO_ADD,
         ]);
       }
     },

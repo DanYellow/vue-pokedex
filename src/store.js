@@ -2,6 +2,7 @@
 /* eslint-disable */
 import Vuex from 'vuex';
 import Vue from 'vue';
+import axios from 'axios';
 
 import Utils from './utils';
 
@@ -32,19 +33,18 @@ const store = new Vuex.Store({
     fetchPkmn({ commit, state, dispatch }, limit = []) {
       state.endLoaded = false;
       let pkmnIndex = limit[0];
-      fetch(`${BASE_URL}/pokemon/${limit[0]}/`).then(result =>
-        result.json(),
-      ).then((pkmn) => {
-        if (limit[0] > limit[1]) {
-          state.endLoaded = true;
-          return;
-        }
+      axios.get(`${BASE_URL}/pokemon/${limit[0]}/`)
+        .then(pkmn => {
+          if (limit[0] > limit[1]) {
+            state.endLoaded = true;
+            return;
+          }
 
-        commit('fetchPkmn', pkmn);
-        pkmnIndex += 1;
-        store.dispatch('fetchPkmn', [pkmnIndex, limit[1]]);
-      }).catch(() => {
-        store.dispatch('fetchPkmn', [pkmnIndex, limit[1]]);
+          commit('fetchPkmn', pkmn);
+          pkmnIndex += 1;
+          store.dispatch('fetchPkmn', [pkmnIndex, limit[1]]);
+        }).catch(() => {
+          store.dispatch('fetchPkmn', [pkmnIndex, limit[1]]);
       });
     },
     async fetchPkmnByName({ state }, name) {
@@ -54,8 +54,8 @@ const store = new Vuex.Store({
       ));
 
       if (!currentPkmn) {
-        const distPkmn = await fetch(`${BASE_URL}/pokemon/${name}/?foo`);
-        const distPkmnJson = await distPkmn.json();
+        const distPkmnJson = await axios(`${BASE_URL}/pokemon/${name}/?foo`);
+        // const distPkmnJson = await distPkmn.json();
         currentPkmn = { ...currentPkmn, ...distPkmnJson };
       }
       const types = currentPkmn.types || [];
@@ -63,8 +63,8 @@ const store = new Vuex.Store({
       currentPkmn.weaknessAndImmunes = Utils.getWeaknessAndImmunes(
         types.map(type => type.type.name));
 
-      const descPkmn = await fetch(`${BASE_URL}/pokemon-species/${name}/`);
-      const descPkmnJson = await descPkmn.json();
+      const descPkmnJson = await axios(`${BASE_URL}/pokemon-species/${name}/`);
+      // const descPkmnJson = await descPkmn.json();
       currentPkmn.descriptions = descPkmnJson;
 
       return currentPkmn;

@@ -25,7 +25,7 @@ const SearchBox = {
   },
   computed: {
     pokedex() {
-      return this.$store.getters.pokedex;
+      return this.$store.getters.pokedex || [];
     },
   },
   methods: {

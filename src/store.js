@@ -55,7 +55,6 @@ const store = new Vuex.Store({
 
       if (!currentPkmn) {
         const distPkmnJson = await axios(`${BASE_URL}/pokemon/${name}/?foo`);
-        // const distPkmnJson = await distPkmn.json();
         currentPkmn = { ...currentPkmn, ...distPkmnJson };
       }
       const types = currentPkmn.types || [];
@@ -64,7 +63,6 @@ const store = new Vuex.Store({
         types.map(type => type.type.name));
 
       const descPkmnJson = await axios(`${BASE_URL}/pokemon-species/${name}/`);
-      // const descPkmnJson = await descPkmn.json();
       currentPkmn.descriptions = descPkmnJson;
 
       return currentPkmn;
